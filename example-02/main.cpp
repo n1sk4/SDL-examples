@@ -1,10 +1,6 @@
 #include <SDL3/SDL.h>
 #include <random>
-#include <iostream>
 #include <vector>
-#include <tuple>
-#include <algorithm>
-#include <array>
 
 const int WIDTH = 640;
 const int HEIGHT = 480;
