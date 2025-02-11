@@ -1,4 +1,4 @@
-name: C++ CI
+name: Main build
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
         sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 60
 
     - name: Set up CMake
-      uses: lukka/get-cmake@v3
+      uses: lukka/get-cmake@latest
 
     - name: Configure CMake
       run: cmake -S . -B build
