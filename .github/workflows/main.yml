@@ -1,0 +1,35 @@
+name: Main build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up GCC 12
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y g++-12
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 60
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 60
+
+    - name: Set up CMake
+      uses: lukka/get-cmake@v3.21.0
+
+    - name: Configure CMake
+      run: cmake -S . -B build
+
+    - name: Build
+      run: cmake --build build
+
+    - name: Run tests
+      run: ctest --test-dir build
