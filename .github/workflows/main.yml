@@ -17,10 +17,13 @@ jobs:
       with:
         submodules: true  # Checkout submodules
 
-    - name: Set up GCC 12
+    - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y g++-12
+        sudo apt-get install -y g++-12 libx11-dev libxext-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libgl1-mesa-dev libwayland-dev wayland-protocols
+
+    - name: Set up GCC 12
+      run: |
         sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 60
         sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 60
 
